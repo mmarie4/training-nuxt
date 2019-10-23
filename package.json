@@ -1,7 +1,7 @@
 {
-  "name": "training-nuxt",
+  "name": "Nuxt playground",
   "version": "1.0.0",
-  "description": "My impressive Nuxt.js project",
+  "description": "Amazing pointless project",
   "author": "Max MARIE",
   "private": true,
   "scripts": {

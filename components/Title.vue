@@ -1,8 +1,7 @@
 <template>
     <div>
-
       <h1 class="title">
-        Max Playground
+        Playground
       </h1>
       <h2 class="subtitle">
         A great useless project to practice Vue.js / Vuex / Nuxt.js

@@ -1,51 +1,74 @@
 <template>
   <div class="card">
-    <h2>Welcome {{user.pseudo}}</h2>
-    <h4>{{user.email}}</h4>
-    <p>{{msg}}</p>
+    <h2 v-if='user'>Welcome {{user.pseudo}}</h2>
+    <h2 v-else>{{getTitle}}</h2>
+    <h4 v-if='user'>{{user.email}}</h4>
+    <h4 v-else>Then click on a movie to see more details</h4>
+    <div v-if='this.$store.state.currentActor != ""' id="movies-container">
+          <p :key="movie" v-for="movie in movieList">
+            <nuxt-link :to='"movies/" + movie'>
+              {{movie}}
+            </nuxt-link>
+          </p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Card',
-  props: ['msg', 'user']
+  props: ['user', 'movieList'],
+  computed: {
+    getTitle: function() {
+      return this.$store.state.currentActor != "" ? this.$store.state.currentActor : "Please choose an actor" 
+    }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-div {
+.card {
   margin: 5%;
-  height: 80%;
+  height: auto;
   width: 39%;
   background: white;
   display: inline-block;
   border-radius: 10px;
+  border: 1px solid #ffffff;
   box-shadow: 0px 2px 12px 10px #dddddd;
   background: #eeeeef;
 }
 
 h1 {
-  width: calc(100% - 40px);
-  margin: 20px;
+  width: 100%;
+  margin: 0;
   color: #5a5a64;
 }
+
+h2 {
+  margin: 0;
+}
+
 
 h4 {
   margin-bottom: 10%;
   color: #35495e;
 }
 
+#movies-container {
+  text-align: left;
+  display: inline-block;
+  margin-bottom: 20px;
+}
 
 p {
-  float: left;
-  color: #5a5a64;
-  margin: 0;
-  margin-left: 10%;
-  font-size: 12px;
-  font-weight: 800;
+  display: inline-block;
+  width: 80%;
+  margin: 5px;
+  margin-left: 5%;
+  cursor: pointer;
 }
 
 

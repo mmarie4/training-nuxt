@@ -10,12 +10,12 @@ export default {
   name: 'SideMenu',
   data() {
       return {
-          actorList: ['Leonardo Di Caprio', 'Marion Cotillard', 'Angelina Jolie', 'Johnny Deep', 'Brad Pitt', 'Jason Statham', 'Will Smith']
+          actorList: this.$store.state.actorList
       }
   },
   methods: {
-      handleCLick: function(actor) {
-          console.log(actor, "clicked !");
+      handleClick: function(actor) {
+          this.$store.commit('currentActor', actor);
       }
   }
 }
@@ -44,7 +44,7 @@ p {
     margin: 5px;
     margin-left: 5px;
     color: white;
-    font-size: 10px;
+    font-size: 12px;
     cursor: pointer;
 }
 

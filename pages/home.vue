@@ -8,7 +8,7 @@
         <side-menu/>
         <div id="cards-container">
           <app-card :user='getUser'/>
-          <app-card :user='getUser'/>
+          <app-card :movieList='this.$store.state.movieList'/>
         </div>
       </div>
       <app-footer/>

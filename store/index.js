@@ -1,10 +1,13 @@
 export const state = {
     isLogged: false,
-    errorMsg: "",
+    currentActor: "",
     user: {
       pseudo: "",
       email: ""
-    }
+    },
+    actorList: ['Leonardo Di Caprio', 'Marion Cotillard', 'Angelina Jolie', 'Johnny Deep', 'Brad Pitt', 'Jason Statham', 'Will Smith'],
+    // Movie list should be specific to each actor but no time for this now
+    movieList: ['Titanic', 'Catch me if you can', 'Lord of the Rings', 'Taxi Driver', 'Snatch', 'Basketball Diaries', 'I, Robot', 'Hancock', 'Mr and Mrs Smith', 'The Tourist', 'LA French', 'Slevin', 'Usual Suspects', 'Shutter Island']
   }
 
 export const mutations = {
@@ -22,5 +25,8 @@ export const mutations = {
     },
     logout: function() {
       this.state.isLogged = false;
+    },
+    currentActor: function(state, actor) {
+      this.state.currentActor = actor;
     }
 }
