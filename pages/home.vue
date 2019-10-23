@@ -8,7 +8,7 @@
         <side-menu/>
         <div id="cards-container">
           <app-card :user='getUser'/>
-          <app-card :movieList='this.$store.state.movieList'/>
+          <app-card :movieList='getMovies'/>
         </div>
       </div>
       <app-footer/>
@@ -31,6 +31,17 @@ export default {
   computed: {
     getUser: function() {
       return this.$store.state.user;
+    },
+    getMovies: function() {
+      var that = this;
+      if(that.$store.state.currentActor != '') {
+          var movies = this.$store.state.actorList.filter(function(actor) { 
+            return actor.name == that.$store.state.currentActor
+          })[0].movies;
+      } else {
+        var movies = []
+      }
+      return movies;
     }
   }
 }
@@ -42,20 +53,20 @@ export default {
   min-height: 100vh;
   width: 100%;
   display: inline-block;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
 #content {
   height: calc(100vh - 111px);
   width: 100%;
   display: flex;
+  align-items:stretch;
+  justify-content: center;
+  overflow: hidden;
 }
 
 #cards-container {
-  width: 100%;
-  display: inline-block;
+  flex-grow: 1;
+  flex-shrink: 0;
 }
 
 #backbutton {

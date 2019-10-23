@@ -36,9 +36,9 @@ export default {
   background: white;
   display: inline-block;
   border-radius: 10px;
-  border: 1px solid #ffffff;
   box-shadow: 0px 2px 12px 10px #dddddd;
   background: #eeeeef;
+  overflow: auto;
 }
 
 h1 {
@@ -57,19 +57,20 @@ h4 {
   color: #35495e;
 }
 
+
 #movies-container {
+  margin: 0;
   text-align: left;
-  display: inline-block;
+  width: 100%;
   margin-bottom: 20px;
 }
 
 p {
-  display: inline-block;
   width: 80%;
   margin: 5px;
   margin-left: 5%;
   cursor: pointer;
+  color: #555555;
 }
-
 
 </style>

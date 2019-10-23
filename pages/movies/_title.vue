@@ -7,7 +7,7 @@
       <div id='content'>
           <div class="card">
               <h1>{{this.$route.path.slice(8, this.$route.path.length)}}</h1>
-              <h2>{{this.$store.state.currentActor}}</h2>
+              <h2>With {{this.$store.state.currentActor}}</h2>
               <p>Here will be the movie description</p>
           </div>
       </div>
@@ -27,7 +27,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
+.card {
+  margin: 5%;
+  text-align: center;
+  height: 80%;
+  width: 80%;
+  background: white;
+  display: inline-block;
+  border-radius: 10px;
+  box-shadow: 0px 2px 12px 10px #dddddd;
+  background: #eeeeef;
+}
+
 #content {
   height: calc(100vh - 111px);
   width: 100%;
@@ -37,23 +49,6 @@ export default {
 h2 {
     color: #35495e;
     margin-bottom: 50px;
-}
-
-.card {
-  margin: 5%;
-  height: auto;
-  width: 89%;
-  background: white;
-  display: inline-block;
-  border-radius: 10px;
-  border: 1px solid #ffffff;
-  box-shadow: 0px 2px 12px 10px #dddddd;
-  background: #eeeeef;
-}
-
-#cards-container {
-  width: 100%;
-  display: inline-block;
 }
 
 #backbutton {

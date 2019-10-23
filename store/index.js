@@ -1,13 +1,32 @@
 export const state = {
     isLogged: false,
-    currentActor: "",
     user: {
       pseudo: "",
       email: ""
     },
-    actorList: ['Leonardo Di Caprio', 'Marion Cotillard', 'Angelina Jolie', 'Johnny Deep', 'Brad Pitt', 'Jason Statham', 'Will Smith'],
-    // Movie list should be specific to each actor but no time for this now
-    movieList: ['Titanic', 'Catch me if you can', 'Lord of the Rings', 'Taxi Driver', 'Snatch', 'Basketball Diaries', 'I, Robot', 'Hancock', 'Mr and Mrs Smith', 'The Tourist', 'LA French', 'Slevin', 'Usual Suspects', 'Shutter Island']
+    actorList: [{
+      name: 'Leonardo Di Caprio',
+      movies: ['Catch me if you can', 'Titanic', 'Basketball Diaries']
+    }, {
+      name: 'Marion Cotillard',
+      movies: ['Batman: The Dark Knight Rises', 'Public Enemies']
+    }, {
+      name: 'Angelina Jolie',
+      movies: ['Mr and Mrs Smith', 'Lara Croft: Tomb Raider']
+    }, {
+      name: 'Johnny Depp',
+      movies: ['The Tourist', 'Alice in Wonderlands', 'Charlie and the Chocolate Factory']
+    }, {
+      name: 'Brad Pitt',
+      movies: ['Mr and Mrs Smith', 'Snatch']
+     }, {
+      name: 'Jason Statham',
+      movies: ['Snatch', 'The Transporter', 'The Expendables']
+     }, {
+       name: 'Will Smith',
+       movies: ['I, Robot', 'Hancock']
+     }],
+     currentActor: "",
   }
 
 export const mutations = {

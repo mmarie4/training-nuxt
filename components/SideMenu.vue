@@ -10,7 +10,7 @@ export default {
   name: 'SideMenu',
   data() {
       return {
-          actorList: this.$store.state.actorList
+          actorList: this.$store.state.actorList.map(function(act) { return act.name })
       }
   },
   methods: {
