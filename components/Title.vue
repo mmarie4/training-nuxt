@@ -4,7 +4,7 @@
         Playground
       </h1>
       <h2 class="subtitle">
-        A great useless project to practice Vue.js / Vuex / Nuxt.js
+        A great useless project to practice Vue.js / Vuex / Nuxt.js / GraphQL
       </h2>
     </div>
 </template>
@@ -21,7 +21,7 @@ div {
   height: 60px;
   width: 100%;
   text-align: center;
-  box-shadow: 0px 8px 10px 10px #cac7c7;
+  box-shadow: 0px 2px 8px 10px #dddddd;
   background: #35495e;
 }
 

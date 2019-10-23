@@ -1,26 +1,38 @@
 <template>
   <div class="card">
-    <h2 v-if='user'>Welcome {{user.pseudo}}</h2>
+    <h2 v-if='user'>Welcome {{user.username}}</h2>
     <h2 v-else>{{getTitle}}</h2>
-    <h4 v-if='user'>{{user.email}}</h4>
+    <h4 v-if='user'>Client ID: {{user.clientId}}</h4>
+    <h4 v-if='user'>Tenant ID: {{user.tenantId}}</h4>
     <h4 v-else>Then click on a movie to see more details</h4>
-    <div v-if='this.$store.state.currentActor != ""' id="movies-container">
+    <div v-if='this.$store.state.currentActor != ""' class="list-container">
           <p :key="movie" v-for="movie in movieList">
             <nuxt-link :to='"movies/" + movie'>
               {{movie}}
             </nuxt-link>
           </p>
     </div>
+    <div v-if='user' class="list-container">
+        <p :key="company.name" v-for="company in getCompanyList">
+            <nuxt-link :to='"companies/" + company.name'>
+              {{company.name}}
+            </nuxt-link>
+        </p>
+    </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'Card',
   props: ['user', 'movieList'],
   computed: {
     getTitle: function() {
       return this.$store.state.currentActor != "" ? this.$store.state.currentActor : "Please choose an actor" 
+    },
+    getCompanyList: function() {
+      return this.$store.state.companyList;
     }
   }
 }
@@ -36,7 +48,7 @@ export default {
   background: white;
   display: inline-block;
   border-radius: 10px;
-  box-shadow: 0px 2px 12px 10px #dddddd;
+  box-shadow: 0px 2px 6px 4px #dddddd;
   background: #eeeeef;
   overflow: auto;
 }
@@ -53,12 +65,12 @@ h2 {
 
 
 h4 {
-  margin-bottom: 10%;
+  margin-bottom: 0;
   color: #35495e;
 }
 
 
-#movies-container {
+.list-container {
   margin: 0;
   text-align: left;
   width: 100%;

@@ -1,12 +1,15 @@
 <template>
   <div class="card">
     <h1>Login</h1>
-    <h4>Enter your email adress and choose a pseudo to enter the website</h4>
-    <p>Email</p>
-    <input id="email-input" type='email' hint='email'/>
-    <p>Pseudo</p>
-    <input id="pseudo-input" type='text' hint='pseudo'/>
-    <p id="err-msg">{{errorMsg}}</p>
+    <h4>Enter the credentials to access the API reader.</h4>
+    <p>Tenant ID</p>
+    <input id="tenantId-input" type='text'/>
+    <p>Client ID</p>
+    <input id="clientId-input" type='text'/>
+    <p>Username</p>
+    <input id="username-input" type='text'/>
+    <p>Password</p>
+    <input id="password-input" type='password'/>
     <nuxt-link :to="'home'">
       <button class="button--grey" @click='login'>LOGIN</button>
     </nuxt-link>
@@ -14,18 +17,43 @@
 </template>
 
 <script>
+
+import axios from 'axios';
+import api from "~/api/";
+
 export default {
   name: 'LoginBox',
   methods: {
-    login: function() {
-      var pseudo = document.getElementById('pseudo-input').value;
-      var email = document.getElementById('email-input').value;
-      this.$store.commit('login', {pseudo: pseudo, email: email});
-    }
-  },
-  computed: {
-    errorMsg: function() {
-      return this.$store.state.errorMsg;
+    login: async function() {
+      // Login guest user and save token to store
+      var that = this;
+      var tenantId = document.getElementById('tenantId-input').value;
+      var clientId = document.getElementById('clientId-input').value;
+      var username = document.getElementById('username-input').value;
+      var password = document.getElementById('password-input').value;
+      const res = await axios.post('https://api.covergo.com/graphql', {
+            query: api.auth.login,
+            variables: {
+              tenantId: tenantId,
+              clientId: clientId,
+              username: username,
+              password: password
+            }
+        });
+      if (res.errors) {
+        console.error("There was an error, I should redirect")
+      } else if (res.data.data.token_2){
+        that.$store.commit("token", res.data.data.token_2.accessToken);
+        that.$store.commit('user', {
+              tenantId: tenantId,
+              clientId: clientId,
+              username: username,
+              password: password
+            });
+      } else {
+        window.location = '/';
+        alert("wrong credentials");
+      }
     }
   }
 }
@@ -36,12 +64,12 @@ export default {
 
 div {
   margin: 5%;
-  height: 50%;
+  height: 70%;
   min-height: 400px;
   background: white;
   display: inline-block;
   border-radius: 10px;
-  box-shadow: 0px 2px 12px 10px #dddddd;
+  box-shadow: 0px 2px 8px 6px #dddddd;
 }
 
 h1 {
@@ -51,13 +79,13 @@ h1 {
 }
 
 h4 {
-  margin-bottom: 10%;
+  margin-bottom: 2%;
   color: #35495e;
 }
 
 input {
   width: 80%;
-  height: 10%;
+  height: 28px;
   margin: 5%;
   margin-top: 0;
   border-radius: 5px;
@@ -71,13 +99,6 @@ p {
   margin-left: 10%;
   font-size: 12px;
   font-weight: 800;
-}
-
-#err-msg {
-  color: red;
-  width: 100%;
-  margin: 0;
-  font-size: 9px;
 }
 
 </style>

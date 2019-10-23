@@ -1,9 +1,14 @@
 export const state = {
     isLogged: false,
+    token: "",
+    companyList: [],
     user: {
-      pseudo: "",
-      email: ""
+      tenantId: "",
+      clientId: "",
+      username: "",
+      password: ""
     },
+    // Mock data
     actorList: [{
       name: 'Leonardo Di Caprio',
       movies: ['Catch me if you can', 'Titanic', 'Basketball Diaries']
@@ -30,22 +35,22 @@ export const state = {
   }
 
 export const mutations = {
-    login: function(state, user) {
-      console.log('user:', user);
-      if (user.email.length != 0 && user.pseudo.length != 0) {
-        this.state.user = user;
-        this.state.isLogged = true;
-        this.state.errorMsg = "";
-      } else {
-        console.log('input is empty')
-        this.state.errorMsg = "Please enter an email and a pseudo. Try again.";
-        window.location = '/';
-      }
+    token: function(state, token) {
+      console.log('token:', token);
+      this.state.token = token;
+    },
+    user: function(state, user) {
+      this.state.user.tenantId = user.tenantId;
+      this.state.user.clientId = user.clientId;
+      this.state.user.username = user.username;
     },
     logout: function() {
       this.state.isLogged = false;
     },
     currentActor: function(state, actor) {
       this.state.currentActor = actor;
+    },
+    companyList: function(state, list) {
+      this.state.companyList = list;
     }
 }

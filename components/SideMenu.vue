@@ -31,7 +31,7 @@ div {
   background: #35495e;
   overflow: auto;
   border-radius: 5px;
-  box-shadow: 0px 8px 10px 10px #cac7c7;
+  box-shadow: 0px 2px 8px 10px #dddddd;
 }
 
 h4 {

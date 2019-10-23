@@ -6,9 +6,9 @@
       <app-header/>
       <div id='content'>
           <div class="card">
-              <h1>{{this.$route.path.slice(8, this.$route.path.length)}}</h1>
-              <h2>With {{this.$store.state.currentActor}}</h2>
-              <p>Here will be the movie description</p>
+              <h1>{{this.$route.path.slice(11, this.$route.path.length)}}</h1>
+              <h2>Display here some info</h2>
+              <p>Here will be the company description</p>
           </div>
       </div>
       <app-footer/>
